@@ -1,0 +1,114 @@
+.LoginPage .OuterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: #eee;
+}
+
+.LoginPage .InnerContainer {
+  width: 400px;
+  max-height: 500px;
+  height: 100%;
+  overflow-y: auto;
+  padding: 32px;
+  border-radius: 8px;
+  background: #fff;
+
+}
+
+@media screen and (max-width: 500px) {
+  .LoginPage .InnerContainer {
+    width: 100vw;
+    max-height: 100vh;
+  }
+}
+
+.LoginPage .FormContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.LoginPage .FormContainer::after {
+  content: '';
+  display: block;
+  height: 32px;
+}
+
+.LoginPage h1.Title {
+  font-size: 30px;
+  margin: 24px 0px;
+  text-align: center;
+}
+
+.LoginPage label.Label {
+  color: #2980b9;
+  font-weight: bold;
+  display: block;
+  width: max-content;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.LoginPage img {
+  max-height: 270px;
+  width: 250px;
+  align-self: center;
+  margin-bottom: 24px;
+}
+
+.LoginPage form {
+  flex: 1;
+  margin-bottom: 32px;
+}
+
+.LoginPage .FormGroup {
+  margin-bottom: 16px;
+
+}
+
+.LoginPage input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #999;
+  border-radius: 16px;
+  outline: none;
+}
+
+.LoginPage input::placeholder {
+  font-weight: 300;
+}
+
+.LoginPage .FormGroup:last-child {
+  margin-bottom: initial;
+}
+
+.LoginPage p.ErrorMessage {
+  color: #c0392b;
+  font-size: 12px;
+  margin-top: 1px;
+  padding-left: 2px;
+}
+
+.LoginPage button {
+  width: 100%;
+  height: 56px;
+  cursor: pointer;
+  background: #3498db;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  font-weight: bolder;
+  border-radius: 2px;
+}
+
+.LoginPage button:not(:disabled):hover {
+  background: #56abe3;
+}
+
+.LoginPage button:disabled {
+  opacity: 30%;
+  cursor: not-allowed;
+}
