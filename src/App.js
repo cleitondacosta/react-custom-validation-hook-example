@@ -1,11 +1,10 @@
 import React from 'react';
-import LoginPage from './pages/login/LoginPage';
-import './App.css';
+import RegisterPage from './pages/register/RegisterPage';
 
 export default function App() {
   return (
     <div className="Application">
-      <LoginPage />
+      <RegisterPage />
     </div>
   );
 }

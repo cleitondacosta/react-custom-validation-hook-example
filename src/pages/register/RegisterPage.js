@@ -1,10 +1,9 @@
 import React from 'react';
 import usePassword from '../../shared/hooks/usePassword';
-
 import Logo from '../../assets/img/sample-logo.png';
-import './Login.css';
+import './RegisterPage.css';
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const { password, setPassword, passwordErrors } = usePassword();
 
   function login() {
@@ -61,7 +60,7 @@ export default function LoginPage() {
 
             <div className="ButtonContainer">
               <button onClick={login} disabled={passwordErrors.length > 0}>
-                Login
+                Sign up
               </button>
             </div>
           </div>
