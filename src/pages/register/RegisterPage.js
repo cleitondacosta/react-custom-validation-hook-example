@@ -8,20 +8,20 @@ import './RegisterPage.css';
 
 Yup.addMethod(Yup.string, 'password', yupValidPassword);
 
-export default function RegisterPage() {
-  const formInitialValues = { login: '', password: '' };
+const formInitialValues = { login: '', password: '' };
 
-  const SignupSchema = Yup.object().shape({
-    login: Yup.string()
-      .min(3, 'Too short!')
-      .max(15, 'Too Long!') 
-      .required("This field is required."),
+const SignupSchema = Yup.object().shape({
+  login: Yup.string()
+    .min(3, 'Too short!')
+    .max(15, 'Too Long!') 
+    .required("This field is required."),
 
-    password: Yup.string()
-      .required("This field is required.")
-      .password(),
-  });
+  password: Yup.string()
+    .required("This field is required.")
+    .password(),
+});
   
+export default function RegisterPage() {
   function handleFormSubmit(values, { setSubmitting }) { 
     alert(JSON.stringify(values, null, 2));
     setSubmitting(false);
