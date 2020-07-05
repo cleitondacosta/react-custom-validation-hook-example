@@ -44,10 +44,11 @@
 
 .LoginPage label.Label {
   color: #2980b9;
+  text-transform: uppercase;
   font-weight: bold;
   display: block;
   width: max-content;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 20px;
   margin-bottom: 8px;
 }
@@ -66,12 +67,27 @@
 
 .LoginPage .FormGroup {
   margin-bottom: 16px;
+}
 
+.LoginPage .FormGroup .ErrorMessage {
+  opacity: 0%;
+  max-height: 0px;
+  overflow: hidden;
+  animation: spawn-error 0.4s ease-in forwards;
+  color: #c0392b;
+  font-size: 12px;
+  margin-top: 1px;
+  padding-left: 2px;
+}
+
+.LoginPage .FormGroup.__is-error input {
+  border: 1px solid #c0392b;
+  margin-bottom: 4px;
 }
 
 .LoginPage input {
   width: 100%;
-  padding: 8px;
+  padding: 12px;
   border: 1px solid #999;
   border-radius: 16px;
   outline: none;
@@ -83,13 +99,6 @@
 
 .LoginPage .FormGroup:last-child {
   margin-bottom: initial;
-}
-
-.LoginPage p.ErrorMessage {
-  color: #c0392b;
-  font-size: 12px;
-  margin-top: 1px;
-  padding-left: 2px;
 }
 
 .LoginPage button {
@@ -112,3 +121,21 @@
   opacity: 30%;
   cursor: not-allowed;
 }
+
+@keyframes spawn-error {
+  0% {
+    opacity: 0%;
+    max-height: 0px;
+  }
+
+  66% {
+    max-height: 80px;
+  }
+
+
+  100% {
+    opacity: 100%;
+    max-height: 80px;
+  }
+}
+
