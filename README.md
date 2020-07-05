@@ -18,4 +18,5 @@ yarn start
 
 ## Validations
 
-Run this project and fill the form. The errors appears onBlur.
+Run this project and fill the form. The error will appear on "onBlur" event (if
+there is any).
