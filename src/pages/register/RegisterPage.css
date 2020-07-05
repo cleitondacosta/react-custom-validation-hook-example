@@ -1,10 +1,11 @@
 .LoginPage .OuterContainer {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background: #eee;
+  background: #0e9da2;
 }
 
 .LoginPage .InnerContainer {
@@ -12,16 +13,18 @@
   max-height: 500px;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 32px;
   border-radius: 8px;
   background: #fff;
-
+  box-shadow: 0px 0px 16px -7px rgba(0, 0, 0, 0.75);
 }
 
 @media screen and (max-width: 500px) {
   .LoginPage .InnerContainer {
     width: 100vw;
     max-height: 100vh;
+    border-radius: initial;
   }
 }
 
@@ -62,7 +65,6 @@
 
 .LoginPage form {
   flex: 1;
-  margin-bottom: 32px;
 }
 
 .LoginPage .FormGroup {
@@ -89,7 +91,7 @@
   width: 100%;
   padding: 12px;
   border: 1px solid #999;
-  border-radius: 16px;
+  border-radius: 4px;
   outline: none;
 }
 
@@ -99,6 +101,10 @@
 
 .LoginPage .FormGroup:last-child {
   margin-bottom: initial;
+}
+
+.LoginPage .ButtonContainer {
+  margin-top: 32px;
 }
 
 .LoginPage button {
@@ -111,6 +117,8 @@
   color: #fff;
   font-weight: bolder;
   border-radius: 2px;
+  transition: opacity 0.2s ease-out;
+  border: 1px solid #0b7cc6;
 }
 
 .LoginPage button:not(:disabled):hover {
@@ -138,4 +146,3 @@
     max-height: 80px;
   }
 }
-

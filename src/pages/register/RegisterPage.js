@@ -1,13 +1,30 @@
 import React from 'react';
-import usePassword from '../../shared/hooks/usePassword';
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
+import yupValidPassword from '../../shared/validations/password';
+
 import Logo from '../../assets/img/sample-logo.png';
 import './RegisterPage.css';
 
-export default function RegisterPage() {
-  const { password, setPassword, passwordErrors } = usePassword();
+Yup.addMethod(Yup.string, 'password', yupValidPassword);
 
-  function login() {
-    window.alert('Logando..');
+export default function RegisterPage() {
+  const formInitialValues = { login: '', password: '' };
+
+  const SignupSchema = Yup.object().shape({
+    login: Yup.string()
+      .min(3, 'Too short!')
+      .max(15, 'Too Long!') 
+      .required("This field is required."),
+
+    password: Yup.string()
+      .required("This field is required.")
+      .password(),
+  });
+  
+  function handleFormSubmit(values, { setSubmitting }) { 
+    alert(JSON.stringify(values, null, 2));
+    setSubmitting(false);
   }
 
   return (
@@ -17,52 +34,64 @@ export default function RegisterPage() {
           <div className="FormContainer">
             <img src={Logo} alt="Your logo goes here" />
 
-            <form autoComplete="new-password">
-              <div className="FormGroup">
-                <label className="Label" htmlFor="login">
-                  Login
-                </label>
+            <Formik
+              initialValues={formInitialValues}
+              validationSchema={SignupSchema}
+              onSubmit={handleFormSubmit}
+            >
+              {({ errors, touched, isValid, dirty }) => (
+                <Form>
+                  <div className="FormGroup">
+                    <label className="Label" htmlFor="login">
+                      Login
+                    </label>
 
-                <div className="InputContainer">
-                  <input 
-                    type="text" 
-                    id="login"
-                    placeholder="type your login"
-                    autoComplete="off"
-                  />
-                </div>
-              </div>
+                    <div className="InputContainer">
+                      <Field
+                        type="text" 
+                        name="login"
+                        id="login"
+                        placeholder="type your login"
+                        autoComplete="off"
+                      />
+                    </div>
 
-              <div className="FormGroup">
-                <label className="Label" htmlFor="password">
-                  Password
-                </label>
+                    {(errors.login && touched.login) && (
+                      <p className='ErrorMessage'>{errors.login}</p>
+                    )}
+                  </div>
 
-                <div className="InputContainer">
-                  <input 
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                    type="password"
-                    id="login"
-                    placeholder="type your password"
-                    autoComplete="off"
-                  />
-                </div>
+                  <div className="FormGroup">
+                    <label className="Label" htmlFor="password">
+                      Password
+                    </label>
 
-                {passwordErrors.map((passwordError, index) => (
-                  <p className="ErrorMessage" key={index}>
-                    {passwordError}
-                  </p>
-                ))}
-              </div>
+                    <div className="InputContainer">
+                      <Field
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="type your password"
+                        autoComplete="off"
+                      />
+                    </div>
 
-            </form>
+                    {(errors.password && touched.password) && (
+                      <p className='ErrorMessage'>{errors.password}</p>
+                    )}
+                  </div>
 
-            <div className="ButtonContainer">
-              <button onClick={login} disabled={passwordErrors.length > 0}>
-                Sign up
-              </button>
-            </div>
+                  <div className="ButtonContainer">
+                    <button
+                      type="submit" 
+                      disabled={!(isValid && dirty)}
+                    >
+                      Sign up
+                    </button>
+                  </div>
+                </Form>
+              )}
+            </Formik>
           </div>
         </div>
       </div>

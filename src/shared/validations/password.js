@@ -1,17 +1,31 @@
-export default function validatePassword(password) {
+export default function yupValidPassword() {
+  return this.test('Validate password', function(value) {
+    if(value) {
+      const { createError } = this;
+      const errorMessages = validatePassword(value);
+
+      if(errorMessages.length > 0)
+        return createError({ message: errorMessages[0] });
+      else 
+        return true;
+    }
+  });
+}
+
+export function validatePassword(password) {
   let errorMessages = [];
 
   if(fewCharacters(password))
-    errorMessages.push('A senha deve ter no mínimo 8 caracteres');
+    errorMessages.push('The password must have at least 8 characters.');
 
   if(muchCharacters(password))
-    errorMessages.push('A senha deve ter no máximo 12 caracteres');
+    errorMessages.push('The password cannot contain more than 12 characters.');
 
   if(!hasLetter(password))
-    errorMessages.push('A senha deve ter pelo menos uma letra');
+    errorMessages.push('The password must contain one letter.');
 
   if(!hasNumber(password))
-    errorMessages.push('A senha deve ter pelo menos um número');
+    errorMessages.push('The password must contain one number.');
 
   return errorMessages;
 }
