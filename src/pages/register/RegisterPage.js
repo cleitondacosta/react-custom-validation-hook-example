@@ -41,7 +41,9 @@ export default function RegisterPage() {
             >
               {({ errors, touched, isValid, dirty }) => (
                 <Form>
-                  <div className="FormGroup">
+                  <div
+                    className="FormGroup"
+                  >
                     <label className="Label" htmlFor="login">
                       Login
                     </label>
@@ -53,6 +55,11 @@ export default function RegisterPage() {
                         id="login"
                         placeholder="type your login"
                         autoComplete="off"
+                        className={
+                          (errors.login && touched.login)
+                          ? '__is-error'
+                          : ''
+                        }
                       />
                     </div>
 
@@ -73,6 +80,11 @@ export default function RegisterPage() {
                         name="password"
                         placeholder="type your password"
                         autoComplete="off"
+                        className={
+                          (errors.password && touched.password)
+                          ? '__is-error'
+                          : ''
+                        }
                       />
                     </div>
 
